@@ -15,13 +15,13 @@ If you don’t already have a tool to export the cookies from the Web browser to
 - For Firefox: "Export Cookies" (https://addons.mozilla.org/en-US/firefox/addon/export-cookies/?src=api) 
 - For Chrome: "cookies.txt export" (https://chrome.google.com/webstore/detail/cookietxt-export/lopabhfecdfhgogdbojmaicoicjekelh)
 
- After installing the extension(s) above on the browser of your choice, follow the steps below:
+After installing the extension(s) above on the browser of your choice, follow the steps below:
 - Initiate the download of the file you want (if downloading multiple files, you just need to do this for the first one)
 - Once the download is initiated, cancel it.
 - Export the cookies to a file (call it cookies.txt)
 - If you’re using one of the extensions suggested above, this is how you do it:
-        - On Firefox: click on Tools -> “Export cookies…” and save the file
-        - On Chrome: click on the “cookies.txt export” icon in the toolbar (the icon is a blue “C” with an arrow inside), select the entire contents of the cookies and paste it into a text file.
+ - On Firefox: click on Tools -> “Export cookies…” and save the file
+ - On Chrome: click on the “cookies.txt export” icon in the toolbar (the icon is a blue “C” with an arrow inside), select the entire contents of the cookies and paste it into a text file.
 - Copy the cookies.txt file in the same directory as this Dockerfile.
 It's necessary the copy a valid cookies file from your Web browser to download Oracle Software from http://www.oracle.com 
 
