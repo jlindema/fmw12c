@@ -22,7 +22,7 @@ After installing the extension(s) above on the browser of your choice, follow th
 - If you’re using one of the extensions suggested above, this is how you do it:
  - On Firefox: click on Tools -> “Export cookies…” and save the file
  - On Chrome: click on the “cookies.txt export” icon in the toolbar (the icon is a blue “C” with an arrow inside), select the entire contents of the cookies and paste it into 	 a text file.
-Copy the cookies.txt file in the same directory as this Dockerfile.
+Copy and Replace the cookies.txt file in the same directory as this Dockerfile.
 It's necessary the copy a valid cookies file from your Web browser to download Oracle Software from http://www.oracle.com 
 
 ### Building WebLogic Images

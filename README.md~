@@ -1,35 +1,45 @@
-WebLogic on Docker
+Fusion Middleware SOA Suite on Docker
 ===============
-Docker configurations to facilitate installation, configuration, and environment setup for developers. This project includes [dockerfiles](/dockerfiles/12.1.3/wls) for WebLogic 12c 12.1.3 with JDK 7.
+## Oracle Weblogic 12c
+Docker configurations to facilitate a generic installation and configuration. This project includes [dockerfiles](/dockerfiles/12.1.3/wls) for Oracle WebLogic 12c (WLS) 12.1.3 with JDK 7.
 
-## Based on Official Oracle Linux Docker images
+#### Based on Official Oracle Linux Docker images
 For more information please read the [Docker Images from Oracle Linux](https://registry.hub.docker.com/_/oraclelinux/) page.
 
-## How to build and run
-This project offers Dockerfiles for WebLogic 12c (12.1.3) for the 'generic' distribution with JDK 7.
-To download the generic WebLogic 12c package from the Oracle site, it's necessary to be authenticate in the site.
-To do this, I use the method [Export cookies](http://www.pythian.com/blog/how-to-download-oracle-software-using-wget-or-curl/) to copy a valid cookies file from your Web browser to download Oracle Software from http://www.oracle.com
 
-## How to copy a valid cookies file
-If you don’t already have a tool to export the cookies from the Web browser to a text file, I’d suggest one of the browser extensions below:
-
-    For Firefox: "Export Cookies" (https://addons.mozilla.org/en-US/firefox/addon/export-cookies/?src=api) 
-    For Chrome: "cookies.txt export" (https://chrome.google.com/webstore/detail/cookietxt-export/lopabhfecdfhgogdbojmaicoicjekelh)
-
- After installing the extension(s) above on the browser of your choice, follow the steps below:
-
-    Initiate the download of the file you want (if downloading multiple files, you just need to do this for the first one)
-    Once the download is initiated, cancel it.
-    Export the cookies to a file (call it cookies.txt)
-    If you’re using one of the extensions suggested above, this is how you do it:
-
-        On Firefox: click on Tools -> “Export cookies…” and save the file
-        On Chrome: click on the “cookies.txt export” icon in the toolbar (the icon is a blue “C” with an arrow inside), select the entire contents of the cookies and paste it into 	 a text file.
-    Copy the cookies.txt file in the same directory as this Dockerfile.
-It's necessary the copy a valid cookies file from your Web browser to download Oracle Software from http://www.oracle.com 
-
-### Building WebLogic Images
-
-**IMPORTANT:** the resulting images will NOT have a domain pre-configured. You must extend the image with your own Dockerfile, and create your domain using WLST.
+## Oracle OSB 12c
+Docker configurations to facilitate a generic installation and configuration. This project includes [dockerfiles](/dockerfiles/12.1.3/osb) for Oracle Service Bus 12c (OSB) 12.1.3 alone
+ 
+#### Based on Oracle Weblogic 12c 
+For more information please read the [Docker Image Oracle WebLogic 12c](/dockerfiles/12.1.3/wls) page.
 
 
+## Oracle MFT 12c
+Docker configurations to facilitate a generic installation and configuration. This project includes [dockerfiles](/dockerfiles/12.1.3/mft) for Oracle Managed File Transfer 12c (MFT) 12.1.3 alone
+ 
+#### Based on Oracle Weblogic 12c 
+For more information please read the [Docker Image Oracle WebLogic 12c](/dockerfiles/12.1.3/wls) page.
+
+
+## Oracle SOA 12c
+Docker configurations to facilitate a generic installation and configuration. This project includes [dockerfiles](/dockerfiles/12.1.3/soa) for Oracle SOA Suite 12c (SOA) 12.1.3
+This configuration includes Oracle SOA Suite 12c with Oracle OSB 12c, Oracle BAM 12c, and Oracle MFT 12c. 
+
+#### Based on Oracle Weblogic 12c 
+For more information please read the [Docker Image Oracle WebLogic 12c](/dockerfiles/12.1.3/wls) page.
+
+
+## Oracle BPM 12c
+Docker configurations to facilitate a generic installation and configuration. This project includes [dockerfiles](/dockerfiles/12.1.3/bpm) for Oracle BPM Suite 12c (SOA) 12.1.3
+This configuration includes Oracle SOA Suite 12c with Oracle OSB 12c, Oracle BAM 12c, and Oracle MFT 12c. 
+
+#### Based on Oracle SOA 12c
+For more information please read the [Docker Image Oracle SOA Suite 12c](/dockerfiles/12.1.3/soa) page.
+
+
+## Oracle API Management 12c
+Docker configurations to facilitate a generic installation and configuration. This project includes [dockerfiles](/dockerfiles/12.1.3/api) for Oracle API management 12c () 12.1.3 
+This configuration includes Oracle Service Bus 12c (12.1.3),  Oracle API manager 12c (12.1.3) and Oracle API Catalog 12c (12.1.3)
+
+#### Based on Oracle OSB 12c
+For more information please read the [Docker Image Oracle Service Bus 12c](/dockerfiles/12.1.3/osb) page.
