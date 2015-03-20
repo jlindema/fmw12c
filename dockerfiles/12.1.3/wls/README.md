@@ -33,6 +33,8 @@ To Build the WebLogic image, follow the steps below:
 
 - Go to folder /dockerfiles/12.1.3/wls
 
+- Copy and Replace the cookies.txt
+
 - Run the following command:
  
         sudo docker build -t weblogic:12.1.3 .
