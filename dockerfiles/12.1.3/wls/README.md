@@ -21,8 +21,10 @@ After installing the extension(s) above on the browser of your choice, follow th
 - Export the cookies to a file (call it cookies.txt)
 - If you’re using one of the extensions suggested above, this is how you do it:
  - On Firefox: click on Tools -> “Export cookies…” and save the file
- - On Chrome: click on the “cookies.txt export” icon in the toolbar (the icon is a blue “C” with an arrow inside), select the entire contents of the cookies and paste it into 	 a text file.
+ - On Chrome: click on the “cookies.txt export” icon in the toolbar (the icon is a blue “C” with an arrow inside), select the entire contents of the cookies and paste it into a text file.
+
 Copy and Replace the cookies.txt file in the same directory as this Dockerfile.
+
 It's necessary the copy a valid cookies file from your Web browser to download Oracle Software from http://www.oracle.com 
 
 ### Building WebLogic Images
@@ -31,9 +33,11 @@ To Build the WebLogic image, follow the steps below:
 		- Go to folder /dockerfiles/12.1.3/wls
 
 		- Run the following command:
+			
 			sudo docker build -t weblogic:12.1.3 .
 
 		- Make sure you now have this image in place with
+			
 			sudo docker images
 
 
