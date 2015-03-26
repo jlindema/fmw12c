@@ -2,7 +2,7 @@
 #
 # ORACLE DOCKERFILES PROJECT
 # --------------------------
-# This is the Dockerfile for WebLogic 12c (Full) Generic Distribution
+# This is the Dockerfile for Oracel SOA Suite 12c (Full)
 # 
 # IMPORTANT
 # ---------
@@ -32,11 +32,11 @@
 # -----------------------
 # Put the cookies.txt file in the same directory as this Dockerfile
 # Run: 
-#      $ sudo docker build -t oracle/weblogic:12.1.3 . 
+#      $ sudo docker build -t fmw/soa:12.1.3 . 
 #
 # Pull base image
 # ---------------
-FROM oraclelinux:7
+FROM fmw/wls:12.1.3
 
 # Maintainer
 # ----------
@@ -65,15 +65,19 @@ RUN mkdir /u01 && \
 
 # Copy packages
 COPY cookies.txt /u01/
-COPY wls.rsp /u01/
-COPY oraInst.loc /u01/
 
 RUN curl --silent --location --retry 3 --cookie /u01/cookies.txt --insecure http://download.oracle.com/otn-pub/java/jdk/"${JAVA_VERSION}"u"${JAVA_UPDATE}"-b"${JAVA_BUILD}"/jdk-"${JAVA_VERSION}"u"${JAVA_UPDATE}"-linux-x64.rpm -o /u01/jdk-"${JAVA_VERSION}"u"${JAVA_UPDATE}"-linux-x64.rpm
 
 # COPY $WLS_PKG /u01/
 RUN curl --silent --location --retry 3 --cookie /u01/cookies.txt --insecure http://download.oracle.com/otn/nt/middleware/12c/wls/1213/$WLS_PKG -o /u01/$WLS_PKG
 
-
+COPY wls.rsp /u01/
+COPY infra.rsp /u01/
+COPY osb.rsp /u01/
+COPY soa.rsp /u01/
+COPY bpm.rsp /u01/
+COPY mft.rsp /u01/
+COPY oraInst.loc /u01/
 
 # Install and configure Oracle JDK
 # --------------------------------
@@ -100,8 +104,8 @@ USER oracle
 
 # Installation of WebLogic 
 RUN mkdir /u01/oracle/.inventory
-RUN java -jar $WLS_PKG -ignoreSysPrereqs -novalidation -silent -responseFile /u01/wls.rsp -invPtrLoc /u01/oraInst.loc -jreLoc $JAVA_HOME && \
-    rm $WLS_PKG /u01/oraInst.loc /u01/wls.rsp
+RUN java -jar $WLS_PKG -ignoreSysPrereqs -novalidation -silent -responseFile /u01/install.file -invPtrLoc /u01/oraInst.loc -jreLoc $JAVA_HOME && \
+    rm $WLS_PKG /u01/oraInst.loc /u01/install.file
 
 WORKDIR /u01/oracle/
 

@@ -73,6 +73,7 @@ RUN curl --silent --location --retry 3 --cookie /u01/cookies.txt --insecure http
 # COPY $WLS_PKG /u01/
 RUN curl --silent --location --retry 3 --cookie /u01/cookies.txt --insecure http://download.oracle.com/otn/nt/middleware/12c/wls/1213/$WLS_PKG -o /u01/$WLS_PKG
 
+COPY wls.rsp /u01/
 
 
 # Install and configure Oracle JDK
@@ -101,7 +102,7 @@ USER oracle
 # Installation of WebLogic 
 RUN mkdir /u01/oracle/.inventory
 RUN java -jar $WLS_PKG -ignoreSysPrereqs -novalidation -silent -responseFile /u01/wls.rsp -invPtrLoc /u01/oraInst.loc -jreLoc $JAVA_HOME && \
-    rm $WLS_PKG /u01/oraInst.loc /u01/wls.rsp
+    rm $WLS_PKG /u01/oraInst.loc /u01/install.file
 
 WORKDIR /u01/oracle/
 
