@@ -37,7 +37,7 @@ To Build the WebLogic image, follow the steps below:
 
 - Run the following command:
  
-        sudo docker build -t fmw12c/weblogic:12.1.3 .
+        sudo docker build -t fmw/wls:12.1.3 .
 
 - Make sure you now have this image in place with
 

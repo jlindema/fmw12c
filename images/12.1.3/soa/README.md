@@ -31,11 +31,11 @@ It's necessary the copy a valid cookies file from your Web browser to download O
 
 To Build the WebLogic image, follow the steps below:
 
-- Go to folder /dockerfiles/12.1.3/wls
+- Go to folder /dockerfiles/12.1.3/soa
 
 - Run the following command:
  
-        sudo docker build -t fmw/weblogic:12.1.3 .
+        sudo docker build -t fmw/soa:12.1.3 .
 
 - Make sure you now have this image in place with
 

@@ -36,7 +36,7 @@
 #
 # Pull base image
 # ---------------
-FROM fmw12c/weblogic:12.1.3
+FROM weblogic:12.1.3
 
 # Maintainer
 # ----------
@@ -52,9 +52,9 @@ MAINTAINER Jacques Lindemann <jacques.lindemann@oracle.com>
 
 
 ENV INFRA_PKG fmw_12.1.3.0.0_infrastructure.jar
-ENV OSB_PKG fmw_12.1.3.0.0_OSB.jar
-ENV SOA_PKG fmw_12.1.3.0.0_SOA.jar
-ENV MFT_PKG fmw_12.1.3.0.0_MFT.jar
+ENV OSB_PKG fmw_12.1.3.0.0_osb.jar
+ENV SOA_PKG fmw_12.1.3.0.0_soa.jar
+ENV MFT_PKG fmw_12.1.3.0.0_mft.jar
 ENV JAVA_HOME /usr/java/default
 
 # Setup required packages (unzip), filesystem, and oracle user
@@ -64,38 +64,48 @@ ENV JAVA_HOME /usr/java/default
 # Copy packages
 COPY cookies.txt /u01/
 COPY infra.rsp /u01/
-COPY osb.rsp /u01/
 COPY soa.rsp /u01/
-COPY bpm.rsp /u01/
-COPY mft.rsp /u01/
-COPY oraInst.loc /u01/
 
+USER root
 # Change the open file limits in /etc/security/limits.conf
-RUN sed -i '/.*EOF/d' /etc/security/limits.conf && \
-    echo "* soft nofile 16384" >> /etc/security/limits.conf && \ 
-    echo "* hard nofile 16384" >> /etc/security/limits.conf && \ 
-    echo "# EOF"  >> /etc/security/limits.conf
+#RUN sed -i '/.*EOF/d' /etc/security/limits.conf && \
+#    echo "* soft nofile 16384" >> /etc/security/limits.conf && \ 
+#    echo "* hard nofile 16384" >> /etc/security/limits.conf && \ 
+#    echo "# EOF"  >> /etc/security/limits.conf
 
 # Change the kernel parameters that need changing.
-RUN echo "net.core.rmem_max=4192608" > /u01/oracle/.sysctl.conf && \
-    echo "net.core.wmem_max=4192608" >> /u01/oracle/.sysctl.conf && \ 
-    sysctl -e -p /u01/oracle/.sysctl.conf
-
-RUN curl --location --retry 3 --cookie /tmp/cookies.txt "https://edelivery.oracle.com/EPD/Download/process_download/V44416-01.zip?file_id=71652843&aru=17485597&userid=1815772&egroup_aru_number=15364655&country_id=250&patch_file=V44416-01.zip" -o /u01/infra_12.1.3.0.0.zip
-RUN unzip /u01/infra_12.1.3.0.0.zip . && \
-    rm /u01/infra_12.1.3.0.0.zip
+#RUN echo "net.core.rmem_max=4192608" > /u01/oracle/.sysctl.conf && \
+#    echo "net.core.wmem_max=4192608" >> /u01/oracle/.sysctl.conf && \ 
+#    sysctl -e -p /u01/oracle/.sysctl.conf
 
 
 
 # Adjust file permissions, go to /u01 as user 'oracle' to proceed with WLS installation
-RUN chown oracle:oracle -R /u01
 WORKDIR /u01
 USER oracle
 
-# Installation of WebLogic 
+# Download Infrastructure
+RUN curl --location --retry 3 --cookie /u01/cookies.txt "https://edelivery.oracle.com/EPD/Download/process_download/V44416-01.zip?file_id=71652843&aru=17485597&userid=1815772&egroup_aru_number=15364655&country_id=250&patch_file=V44416-01.zip" -o /u01/infra_12.1.3.0.0.zip
+RUN unzip /u01/infra_12.1.3.0.0.zip && rm /u01/infra_12.1.3.0.0.zip
+
+
+# Installation of Infrastructure 
 # RUN mkdir /u01/oracle/.inventory
+COPY oraInst.loc /u01/
 RUN java -jar $INFRA_PKG -ignoreSysPrereqs -novalidation -silent -responseFile /u01/infra.rsp -invPtrLoc /u01/oraInst.loc -jreLoc $JAVA_HOME && \
     rm $INFRA_PKG /u01/oraInst.loc /u01/infra.rsp
+
+# Download SOA
+RUN curl --location --retry 3 --cookie /u01/cookies.txt "https://edelivery.oracle.com/EPD/Download/process_download/V44420-01.zip?file_id=71609117&aru=17485841&userid=1815772&egroup_aru_number=15364655&country_id=250&patch_file=V44420-01.zip" -o /u01/soa_12.1.3.0.0.zip
+RUN unzip /u01/soa_12.1.3.0.0.zip && rm /u01/soa_12.1.3.0.0.zip
+
+
+# Installation of SOA 
+# RUN mkdir /u01/oracle/.inventory
+COPY oraInst.loc /u01/
+RUN java -jar $SOA_PKG -ignoreSysPrereqs -novalidation -silent -responseFile /u01/soa.rsp -invPtrLoc /u01/oraInst.loc -jreLoc $JAVA_HOME && \
+    rm $SOA_PKG /u01/oraInst.loc /u01/soa.rsp
+
 
 WORKDIR /u01/oracle/
 

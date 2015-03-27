@@ -59,6 +59,8 @@ ENV JAVA_HOME /usr/java/default
 
 # Setup required packages (unzip), filesystem, and oracle user
 # ------------------------------------------------------------
+RUN yum -y install unzip
+
 RUN mkdir /u01 && \
     chmod a+xr /u01 && \
     useradd -b /u01 -m -s /bin/bash oracle 
