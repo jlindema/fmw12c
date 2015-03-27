@@ -32,11 +32,11 @@
 # -----------------------
 # Put the cookies.txt file in the same directory as this Dockerfile
 # Run: 
-#      $ sudo docker build -t fmw/soa:12.1.3 . 
+#      $ sudo docker build -t fmw12c/soa:12.1.3 . 
 #
 # Pull base image
 # ---------------
-FROM weblogic:12.1.3
+FROM fmw12c/wls:12.1.3
 
 # Maintainer
 # ----------
@@ -85,7 +85,7 @@ WORKDIR /u01
 USER oracle
 
 # Download Infrastructure
-RUN curl --location --retry 3 --cookie /u01/cookies.txt "https://edelivery.oracle.com/EPD/Download/process_download/V44416-01.zip?file_id=71652843&aru=17485597&userid=1815772&egroup_aru_number=15364655&country_id=250&patch_file=V44416-01.zip" -o /u01/infra_12.1.3.0.0.zip
+RUN curl --silent --location --retry 3 --cookie /u01/cookies.txt "https://edelivery.oracle.com/EPD/Download/process_download/V44416-01.zip?file_id=71652843&aru=17485597&userid=1815772&egroup_aru_number=15364655&country_id=250&patch_file=V44416-01.zip" -o /u01/infra_12.1.3.0.0.zip
 RUN unzip /u01/infra_12.1.3.0.0.zip && rm /u01/infra_12.1.3.0.0.zip
 
 
@@ -96,7 +96,7 @@ RUN java -jar $INFRA_PKG -ignoreSysPrereqs -novalidation -silent -responseFile /
     rm $INFRA_PKG /u01/oraInst.loc /u01/infra.rsp
 
 # Download SOA
-RUN curl --location --retry 3 --cookie /u01/cookies.txt "https://edelivery.oracle.com/EPD/Download/process_download/V44420-01.zip?file_id=71609117&aru=17485841&userid=1815772&egroup_aru_number=15364655&country_id=250&patch_file=V44420-01.zip" -o /u01/soa_12.1.3.0.0.zip
+RUN curl --silent --location --retry 3 --cookie /u01/cookies.txt "https://edelivery.oracle.com/EPD/Download/process_download/V44420-01.zip?file_id=71609117&aru=17485841&userid=1815772&egroup_aru_number=15364655&country_id=250&patch_file=V44420-01.zip" -o /u01/soa_12.1.3.0.0.zip
 RUN unzip /u01/soa_12.1.3.0.0.zip && rm /u01/soa_12.1.3.0.0.zip
 
 

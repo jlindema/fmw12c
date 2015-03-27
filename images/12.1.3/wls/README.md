@@ -1,6 +1,6 @@
 WebLogic on Docker
 ===============
-Docker configurations to facilitate installation, configuration, and environment setup for developers. This project includes [dockerfiles](/dockerfiles/12.1.3/wls) for WebLogic 12c 12.1.3 with JDK 7.
+Docker configurations to facilitate installation, configuration, and environment setup for developers. This project includes [dockerfiles](/images/12.1.3/wls) for WebLogic 12c 12.1.3 with JDK 7.
 
 ## Based on Official Oracle Linux Docker images
 For more information please read the [Docker Images from Oracle Linux](https://registry.hub.docker.com/_/oraclelinux/) page.
@@ -31,13 +31,13 @@ It's necessary the copy a valid cookies file from your Web browser to download O
 
 To Build the WebLogic image, follow the steps below:
 
-- Go to folder /dockerfiles/12.1.3/wls
+- Go to folder /images/12.1.3/wls
 
 - Copy and Replace the cookies.txt
 
 - Run the following command:
  
-        sudo docker build -t fmw/wls:12.1.3 .
+        sudo docker build -t fmw12c/wls:12.1.3 .
 
 - Make sure you now have this image in place with
 
