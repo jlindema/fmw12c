@@ -43,22 +43,25 @@ FROM oraclelinux:7
 MAINTAINER Jacques Lindemann <jacques.lindemann@oracle.com>
 
 # Environment variable required with a proxy
-# ENV http_proxy http://emea-proxy.uk.oracle.com:80
-# ENV https_proxy http://emea-proxy.uk.oracle.com:80
-# ENV HTTP_PROXY http://emea-proxy.uk.oracle.com:80
-# ENV HTTPS_PROXY http://emea-proxy.uk.oracle.com:80
+ENV http_proxy 'http://www-proxy-ukc1.uk.oracle.com:80'
+
+#RUN export http_proxy=$HTTP_PROXY
+#RUN export https_proxy=$HTTPS_PROXY
+
+
 
 # Environment variables required for this build
 
 ENV JAVA_VERSION 7
 ENV JAVA_UPDATE 75
-ENV JAVA_BUILD 13
+ENV JAVA_BUILD 13  
 
 ENV WLS_PKG fmw_12.1.3.0.0_wls.jar
 ENV JAVA_HOME /usr/java/default
 
 # Setup required packages (unzip), filesystem, and oracle user
 # ------------------------------------------------------------
+RUN sed -i -e '/^\[main\]/aproxy=http://www-proxy-ukc1.uk.oracle.com:80' /etc/yum.conf
 RUN yum -y install unzip
 
 RUN mkdir /u01 && \
