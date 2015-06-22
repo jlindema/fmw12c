@@ -11,10 +11,7 @@ Download the the JDK 7 and WebLogic 12c packages from the [eDelivery](http://ede
 - jdk-7u55-linux-x64.rpm -> V44959-01.zip
 - fmw_12.1.3.0.0_wls.jar -> V44413-01.zip
 
-copy V44959-01.zip and V44413-01.zip files in the same directory as this Dockerfile
-Run: 
-      $ sudo docker build -t fmw12c/wls:12.1.3 . 
-
+Copy V44959-01.zip and V44413-01.zip files in the same directory as this Dockerfile (images/copy-version/12.1.3/wls)
  
 
 ### Building WebLogic Images
@@ -23,8 +20,6 @@ To Build the WebLogic image, follow the steps below:
 
 - Go to folder /images/copy-version/12.1.3/wls
 
-- copy V44959-01.zip
-- copy V44413-01.zip
 
 - Run the following command:
  
