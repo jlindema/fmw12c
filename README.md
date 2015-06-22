@@ -1,7 +1,8 @@
 Fusion Middleware SOA Suite on Docker
 ===============
 
-# Dockerfile to build images with download files from http://www.oracle.com and http://edelivery.oracle.com sites
+# Dockerfile to build images with download files 
+The files are donwloaded during the build from http://www.oracle.com and http://edelivery.oracle.com sites. 
 ## Oracle Weblogic 12c
 Docker configurations to facilitate a generic installation and configuration. This project includes [dockerfiles](/images/download-version/12.1.3/wls) for Oracle WebLogic 12c (WLS) 12.1.3 with JDK 7.
 
@@ -51,7 +52,8 @@ For more information please read the [Docker Image Oracle Service Bus 12c](/imag
 
 
 
-# Dockerfile to build images with copy files the repository (The files have to be downloaded manualy in the directory)
+# Dockerfile to build images with copy files
+The files have to be downloaded manualy in the dockerfile directory
 
 ## Oracle Weblogic 12c
 Docker configurations to facilitate a generic installation and configuration. This project includes [dockerfiles](/images/copy-version/12.1.3/wls) for Oracle WebLogic 12c (WLS) 12.1.3 with JDK 7.
