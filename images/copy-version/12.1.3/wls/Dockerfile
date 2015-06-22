@@ -10,27 +10,13 @@
 #
 # REQUIRED FILES TO BUILD THIS IMAGE
 # ----------------------------------
-# It's necessary the copy a valid cookies file from your Web browser to download Oracle Software from http://www.oracle.com 
-# If you don’t already have a tool to export the cookies from the Web browser to a text file, I’d suggest one of the browser extensions below:
-#
-#    For Firefox: "Export Cookies" (https://addons.mozilla.org/en-US/firefox/addon/export-cookies/?src=api) 
-#    For Chrome: "cookies.txt export" (https://chrome.google.com/webstore/detail/cookietxt-export/lopabhfecdfhgogdbojmaicoicjekelh)
-#
-# After installing the extension(s) above on the browser of your choice, follow the steps below:
-#
-#    Initiate the download of the file you want (if downloading multiple files, you just need to do this for the first one)
-#    Once the download is initiated, cancel it.
-#    Export the cookies to a file (call it cookies.txt)
-#    If you’re using one of the extensions suggested above, this is how you do it:
-#
-#        On Firefox: click on Tools -> “Export cookies…” and save the file
-#        On Chrome: click on the “cookies.txt export” icon in the toolbar (the icon is a blue “C” with an arrow inside), select the entire contents of the cookies and paste it into #	 a text file.
-#    Copy the cookies.txt file in the same directory as this Dockerfile.
-#
+# download the JDK and WebLogic from edelivery.oracle.com
+# jdk-7u55-linux-x64.rpm -> V44959-01.zip
+# fmw_12.1.3.0.0_wls.jar -> V44413-01.zip
 #
 # HOW TO BUILD THIS IMAGE
 # -----------------------
-# Put the cookies.txt file in the same directory as this Dockerfile
+# copy V44959-01.zip and V44413-01.zip files in the same directory as this Dockerfile
 # Run: 
 #      $ sudo docker build -t fmw12c/wls:12.1.3 . 
 #
